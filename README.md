@@ -143,11 +143,11 @@ import Tabs, {TabPane} from '{universe:react-markdown-wysiwyg}/editor/rc-tabs';
 - [medium editor@5.9.0](https://www.npmjs.com/package/medium-editor)
 
 ```
-import Tabs, {TabPane} from '{universe:react-markdown-wysiwyg}/editor/medium-editor';
+import mediumEditor from '{universe:react-markdown-wysiwyg}/editor/medium-editor';
 ```
 
 - [to-markdown@2.0.1](https://www.npmjs.com/package/to-markdown)
 
 ```
-import Tabs, {TabPane} from '{universe:react-markdown-wysiwyg}/editor/to-markdown';
+import toMarkdown from '{universe:react-markdown-wysiwyg}/editor/to-markdown';
 ```
