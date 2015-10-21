@@ -1,6 +1,6 @@
 Package.describe({
     name: 'universe:react-markdown-wysiwyg',
-    version: '1.0.1',
+    version: '1.0.2',
     // Brief, one-line summary of the package.
     summary: 'Es6 modules with react components wysiwyg based on Medium Editor, It works with markdown in<->out',
     // URL to the Git repository containing the source code for this package.
