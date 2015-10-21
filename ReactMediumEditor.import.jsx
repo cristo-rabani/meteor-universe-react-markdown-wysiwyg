@@ -25,13 +25,17 @@ export default React.createClass({
     componentDidMount () {
         var dom = React.findDOMNode(this);
         this.medium = new MediumEditor(dom, UniUtils.deepExtend(options, this.props.options || {}));
-        this.medium.subscribe('editableInput', (e, dom) => {
+        this.medium.subscribe('editableInput', () => {
             this._updated = true;
             // temporally bugfix of issue #145
             $('p > ol, p > ul, p > p', dom).each(function () {
                 $(this).unwrap();
             });
             $('li > span ~ br', dom).remove();
+            $('li > p', dom).each(function () {
+                let $this = $(this);
+                $this.parents(':first').html($this.html());
+            });
             this.change(dom.innerHTML);
         });
     },
