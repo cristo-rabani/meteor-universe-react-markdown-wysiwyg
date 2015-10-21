@@ -34,20 +34,39 @@ In your component:
 ...
 ```
 
-### VisualEditor (Visual and Textarea for markdown code)
+### VisualEditor
 
-Props: 
+Props:
+- tag (default div)
 - className - additional class name
 - markdown - markdown text to show
 - onChange - function call on data changed
 - options - options for medium editor
 
 ```
-import DoubleEditor from '{universe:react-markdown-wysiwyg}/ReactMediumEditor';
+import DoubleEditor from '{universe:react-markdown-wysiwyg}/ReactMarkdownMediumEditor';
 
 In your component: 
 ...
  <ReactMediumEditor markdown='# Hello' onChange={console.log.bind(console)}/>;
+...
+```
+
+### VisualHtmlEditor
+
+Props:
+- tag (default div)
+- className - additional class name
+- html - html to show
+- onChange - function call on data changed
+- options - options for medium editor
+
+```
+import ReactHtmlMediumEditor from '{universe:react-markdown-wysiwyg}/ReactHtmlMediumEditor';
+
+In your component: 
+...
+ <ReactHtmlMediumEditor html='<h1>Hello</h1>' onChange={console.log.bind(console)}/>;
 ...
 ```
 

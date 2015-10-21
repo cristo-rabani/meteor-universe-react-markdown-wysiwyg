@@ -1,4 +1,4 @@
-import Editor from './ReactMediumEditor';
+import Editor from './ReactMarkdownMediumEditor';
 import Tabs, {TabPane} from './editor/rc-tabs';
 import onResize from './mixins/on-resize';
 import i18n from '{universe:i18n}';

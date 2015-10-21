@@ -31,6 +31,7 @@ Package.onUse(function (api) {
     api.addFiles('en.i18n.yml');
     api.addFiles('editor.npm.json');
     api.addFiles('mixins/on-resize.import.jsx');
-    api.addFiles('ReactMediumEditor.import.jsx');
+    api.addFiles('ReactMarkdownMediumEditor.import.jsx');
+    api.addFiles('ReactHtmlMediumEditor.import.jsx');
     api.addFiles('DoubleMarkdownComponent.import.jsx');
 });
