@@ -3,11 +3,9 @@ import toMarkdown from './editor/to-markdown';
 import {Showdown} from '{markdown}!exports';
 import i18n from '{universe:i18n}';
 
-const T = i18n.createComponent('universe:markdown-wysiwyg');
+const T = i18n.createComponent('universe:react-markdown-wysiwyg');
 
 const converter = new Showdown.converter();
-
-//Demo 'http://ionicabizau.github.io/medium-editor-markdown/'
 
 export default React.createClass({
     displayName: 'MediumEditor',

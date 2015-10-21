@@ -4,6 +4,7 @@
     "medium-editor": "5.9.0",
     "rc-tabs": "5.3.3"
   },
+
   "system": {
     "dependencies": ["react"]
   }

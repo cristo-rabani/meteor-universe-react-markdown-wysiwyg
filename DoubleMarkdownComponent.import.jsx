@@ -3,7 +3,7 @@ import Tabs, {TabPane} from './editor/rc-tabs';
 import onResize from './mixins/on-resize';
 import i18n from '{universe:i18n}';
 
-const T = i18n.createComponent('universe:markdown-wysiwyg');
+const T = i18n.createComponent('universe:react-markdown-wysiwyg');
 
 export default React.createClass({
     displayName: 'DoubleMarkdownComponent',
@@ -20,14 +20,15 @@ export default React.createClass({
             <Tabs activeKey={this.state.activeKey} onChange={this.onChangeActiveTab}>
                 <TabPane tab={T.__('visual')} key="1">
                     <Editor
-                        className="editor"
+                        className={'editor' + this.props.className? ' '+this.props.className : ''}
                         style={style}
                         markdown={this.state.markdown}
                         onChange={this.onChange}
+                        options={this.props.options}
                         />
                 </TabPane>
                 <TabPane tab={T.__('markdown')} key="2">
-                    <textarea className="editor"
+                    <textarea className={'editor' + this.props.className?  ' '+this.props.className: ''}
                               style={style}
                               value={this.state.markdown}
                               onChange={event => this.onChange(event.target.value)}
