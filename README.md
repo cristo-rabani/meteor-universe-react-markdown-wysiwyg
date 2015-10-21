@@ -44,11 +44,11 @@ Props:
 - options - options for medium editor
 
 ```
-import DoubleEditor from '{universe:react-markdown-wysiwyg}/ReactMarkdownMediumEditor';
+import ReactMarkdownMediumEditor from '{universe:react-markdown-wysiwyg}/ReactMarkdownMediumEditor';
 
 In your component: 
 ...
- <ReactMediumEditor markdown='# Hello' onChange={console.log.bind(console)}/>;
+ <ReactMarkdownMediumEditor markdown='# Hello' onChange={console.log.bind(console)}/>;
 ...
 ```
 
