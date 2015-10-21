@@ -2,7 +2,7 @@ Package.describe({
     name: 'universe:react-markdown-wysiwyg',
     version: '1.0.0',
     // Brief, one-line summary of the package.
-    summary: '',
+    summary: 'Es6 modules with react components wysiwyg based on Medium Editor, It works with markdown in<->out',
     // URL to the Git repository containing the source code for this package.
     git: 'https://github.com/cristo-rabani/meteor-universe-react-markdown-wysiwyg',
     // By default, Meteor will default to using README.md for documentation.

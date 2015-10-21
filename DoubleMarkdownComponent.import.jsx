@@ -20,7 +20,7 @@ export default React.createClass({
             <Tabs activeKey={this.state.activeKey} onChange={this.onChangeActiveTab}>
                 <TabPane tab={T.__('visual')} key="1">
                     <Editor
-                        className={'editor' + this.props.className? ' '+this.props.className : ''}
+                        className={'editor' + (this.props.className? ' ' + this.props.className : '')}
                         style={style}
                         markdown={this.state.markdown}
                         onChange={this.onChange}
@@ -28,7 +28,7 @@ export default React.createClass({
                         />
                 </TabPane>
                 <TabPane tab={T.__('markdown')} key="2">
-                    <textarea className={'editor' + this.props.className?  ' '+this.props.className: ''}
+                    <textarea className={'editor' + (this.props.className?  ' ' +  this.props.className: '')}
                               style={style}
                               value={this.state.markdown}
                               onChange={event => this.onChange(event.target.value)}
