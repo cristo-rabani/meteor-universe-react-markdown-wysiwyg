@@ -38,6 +38,19 @@ export default React.createClass({
             });
             this.change(dom.innerHTML);
         });
+        this.medium.subscribe('blur', () => {
+            this._updated = true;
+            // temporally bugfix of issue #145
+            $('p > ol, p > ul, p > p', dom).each(function () {
+                $(this).unwrap();
+            });
+            $('li > span ~ br', dom).remove();
+            $('li > p', dom).each(function () {
+                let $this = $(this);
+                $this.parents(':first').html($this.html());
+            });
+            this.blur(dom.innerHTML);
+        });
     },
 
     componentWillUnmount () {
@@ -66,6 +79,12 @@ export default React.createClass({
     change (text) {
         if (this.props.onChange) {
             this.props.onChange(getMarkdown(text));
+        }
+    },
+
+    blur (text) {
+        if (this.props.onBlur) {
+            this.props.onBlur(getMarkdown(text));
         }
     }
 });
