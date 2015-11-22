@@ -1,9 +1,9 @@
 {
   "packages": {
+    "collapse-whitespace": "1.1.2",
     "to-markdown": "2.0.1",
     "medium-editor": "5.10.0",
-    "rc-tabs": "5.5.0",
-    "collapse-whitespace": "1.1.2"
+    "rc-tabs": "5.5.0"
   },
 
   "system": {

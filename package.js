@@ -15,7 +15,7 @@ Package.onUse(function (api) {
     api.use('universe:modules@0.6.1');
     api.use('vazco:universe-html-purifier@1.2.3');
     api.use('universe:modules-npm@0.9.5');
-    api.use('universe:utilities-react@0.5.3');
+    api.use('universe:utilities-react@0.5.4');
     api.use('universe:utilities@2.1.0');
     api.use('underscore@1.0.4');
     api.use('markdown@1.0.5');
