@@ -44,7 +44,7 @@ export default React.createClass({
         });
     },
     onResize () {
-        this.setState({height: Math.max(React.findDOMNode(this).clientHeight, 100)});
+        this.setState({height: Math.max(ReactDOM.findDOMNode(this).clientHeight, 100)});
     },
     onChange (markdown) {
         this.setState({markdown});

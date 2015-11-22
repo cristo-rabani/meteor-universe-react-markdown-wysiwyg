@@ -19,7 +19,7 @@ export default React.createClass({
     },
 
     componentDidMount () {
-        var dom = React.findDOMNode(this);
+        var dom = ReactDOM.findDOMNode(this);
         this.medium = new MediumEditor(dom, UniUtils.deepExtend(options, this.props.options || {}));
         this.medium.subscribe('editableInput', () => {
             this._updated = true;

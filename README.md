@@ -128,7 +128,7 @@ React.createClass({
     return <div style={{ width, height }}>{children}</div>;
   },
   onResize () {
-    this.setState({height: Math.max(React.findDOMNode(this).clientHeight, 100)});
+    this.setState({height: Math.max(ReactDOM.findDOMNode(this).clientHeight, 100)});
   }
 }
 
