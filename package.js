@@ -1,6 +1,6 @@
 Package.describe({
     name: 'universe:react-markdown-wysiwyg',
-    version: '1.1.0',
+    version: '1.1.1',
     // Brief, one-line summary of the package.
     summary: 'Es6 modules with react components wysiwyg based on Medium Editor, It works with markdown in<->out',
     // URL to the Git repository containing the source code for this package.
@@ -12,9 +12,9 @@ Package.describe({
 
 Package.onUse(function (api) {
     api.versionsFrom('1.2.1');
-    api.use('universe:modules@0.6.1');
+    api.use('universe:modules@0.6.4');
     api.use('vazco:universe-html-purifier@1.2.3');
-    api.use('universe:modules-npm@0.9.5');
+    api.use('universe:modules-npm@0.9.7');
     api.use('universe:utilities-react@0.5.4');
     api.use('universe:utilities@2.1.0');
     api.use('underscore@1.0.4');
