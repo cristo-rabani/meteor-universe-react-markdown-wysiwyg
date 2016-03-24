@@ -1,7 +1,7 @@
-import Editor from './ReactMarkdownMediumEditor';
-import Tabs, {TabPane} from './editor/rc-tabs';
+import Editor from './ReactMarkdownMediumEditor.jsx';
+import Tabs, {TabPane} from 'rc-tabs';
 import onResize from './mixins/on-resize';
-import i18n from '{universe:i18n}';
+import {_i18n as i18n} from 'meteor/universe:i18n';
 
 const T = i18n.createComponent('universe:react-markdown-wysiwyg');
 

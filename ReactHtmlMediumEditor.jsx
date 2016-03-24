@@ -1,5 +1,5 @@
-import MediumEditor from './editor/medium-editor';
-import i18n from '{universe:i18n}';
+import MediumEditor from 'medium-editor';
+import {_i18n as i18n} from 'meteor/universe:i18n';
 
 const T = i18n.createComponent('universe:react-markdown-wysiwyg');
 
