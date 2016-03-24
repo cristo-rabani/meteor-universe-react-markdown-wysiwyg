@@ -4,8 +4,22 @@
 // export {default as onResize} from './mixins/on-resize';
 // export * from '/editor/rc-tabs';
 
-export DoubleMarkdown from './DoubleMarkdownComponent.jsx';
-export ReactMarkdownMediumEditor from './ReactMarkdownMediumEditor.jsx';
-export ReactHtmlMediumEditor from './ReactHtmlMediumEditor.jsx';
-export onResize from './mixins/on-resize';
-export * from 'rc-tabs';
+import DoubleMarkdown from './DoubleMarkdownComponent.jsx';
+import ReactMarkdownMediumEditor from './ReactMarkdownMediumEditor.jsx';
+import ReactHtmlMediumEditor from './ReactHtmlMediumEditor.jsx';
+import onResize from './mixins/on-resize';
+import RcTabs from 'rc-tabs';
+
+export {
+    DoubleMarkdown,
+    ReactMarkdownMediumEditor,
+    ReactHtmlMediumEditor,
+    onResize,
+    RcTabs
+}
+
+// export DoubleMarkdown from './DoubleMarkdownComponent.jsx';
+// export ReactMarkdownMediumEditor from './ReactMarkdownMediumEditor.jsx';
+// export ReactHtmlMediumEditor from './ReactHtmlMediumEditor.jsx';
+// export onResize from './mixins/on-resize';
+// export * from 'rc-tabs';

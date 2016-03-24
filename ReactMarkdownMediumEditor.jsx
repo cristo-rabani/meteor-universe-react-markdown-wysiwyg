@@ -1,5 +1,7 @@
-import MediumEditor from 'medium-editor';
+import React from "react";
+import ReactDOM from 'react-dom';
 import toMarkdown from 'to-markdown';
+import MediumEditor from 'medium-editor';
 import {Showdown} from 'meteor/markdown';
 import {_i18n as i18n} from 'meteor/universe:i18n';
 

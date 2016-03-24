@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from 'react-dom';
 import Editor from './ReactMarkdownMediumEditor.jsx';
 import Tabs, {TabPane} from 'rc-tabs';
 import onResize from './mixins/on-resize';

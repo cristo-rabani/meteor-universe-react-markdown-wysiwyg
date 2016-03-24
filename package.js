@@ -10,40 +10,30 @@ Package.describe({
     documentation: 'README.md'
 });
 
+Npm.depends({
+    "collapse-whitespace": "1.1.2",
+    "to-markdown": "1.3.0",
+    "medium-editor": "5.10.0",
+    "rc-tabs": "5.5.0"
+});
+
 Package.onUse(function (api) {
-    api.versionsFrom('METEOR@1.3-beta.11');
-    // api.use('universe:modules@0.6.4');
-    // DONE api.use('vazco:universe-html-purifier@1.2.3');
-    // api.use('universe:modules-npm@0.9.7');
-    // DONE api.use('universe:utilities-react@0.5.4');
-    // api.use('universe:utilities@2.1.0');
-    // api.use('underscore@1.0.4');
-    // api.use('markdown@1.0.5');
-    // api.use('jquery@1.11.4');
-    // api.use('universe:i18n@1.2.1');
+    api.versionsFrom('METEOR@1.3-rc.10');
 
     api.use([
-        'modules@0.5.0-modules.8',
-        'ecmascript@0.4.0-modules.8',
+        'ecmascript',
         'vazco:universe-html-purifier@1.2.3',
         'universe:utilities-react@1.0.0-beta3',
         'universe:utilities@2.2.2',
         'underscore',
         'markdown@1.0.5',
-        'jquery@1.11.5-modules.8',
-        'universe-i18n@1.3.5'
-    ])
+        'jquery',
+        'universe:i18n@1.3.5'
+    ]);
 
-    Npm.depends({
-        "collapse-whitespace": "1.1.2",
-        "to-markdown": "2.0.1",
-        "medium-editor": "5.14.4",
-        "rc-tabs": "5.5.0"
-    });
+    api.mainModule('index.js', 'client');
 
-    api.mainModule('index.js');
-
-    api.addFiles([
+    api.addAssets([
         'styles/tabs.css',
         'styles/medium-editor.css',
         'styles/medium-editor-theme-beagle.css',
@@ -51,18 +41,6 @@ Package.onUse(function (api) {
     ], 'client');
 
     api.addFiles([
-        'en.i18n.yml',
-        'editor.npm.json',
-        'ReactMarkdownMediumEditor.import.jsx',
-        'ReactHtmlMediumEditor.import.jsx',
-        'DoubleMarkdownComponent.import.jsx'
+        'en.i18n.yml'
     ]);
-
-    // api.addFiles('en.i18n.yml');
-    // api.addFiles('editor.npm.json');
-    // api.addFiles('mixins/on-resize.import.jsx');
-    // api.addFiles('ReactMarkdownMediumEditor.import.jsx');
-    // api.addFiles('ReactHtmlMediumEditor.import.jsx');
-    // api.addFiles('DoubleMarkdownComponent.import.jsx');
-    // api.addFiles('index.import.js');
 });

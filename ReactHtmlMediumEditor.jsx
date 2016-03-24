@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from 'react-dom';
 import MediumEditor from 'medium-editor';
 import {_i18n as i18n} from 'meteor/universe:i18n';
 
