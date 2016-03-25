@@ -10,11 +10,18 @@ Package.describe({
     documentation: 'README.md'
 });
 
+// since meteor 1.3 isn't supporting the possibility of adding npm packages 
+// to the client yet, then because of than it is required to add all below
+// packages to the main repository of the project - WITHOUT IT THIS PACKAGE WILL NOT WORK
+
 Npm.depends({
     "collapse-whitespace": "1.1.2",
     "to-markdown": "1.3.0",
     "medium-editor": "5.10.0",
-    "rc-tabs": "5.5.0"
+    "rc-tabs": "5.5.0",
+    "handlebars": "4.0.5",
+    "jquery-sortable": "0.9.13",
+    "blueimp-file-upload": "9.12.1"
 });
 
 Package.onUse(function (api) {
@@ -33,11 +40,12 @@ Package.onUse(function (api) {
 
     api.mainModule('index.js', 'client');
 
-    api.addAssets([
+    api.addFiles([
         'styles/tabs.css',
         'styles/medium-editor.css',
         'styles/medium-editor-theme-beagle.css',
         'styles/default.css',
+        'vendor/medium-editor-insert-plugin/medium-editor-insert-plugin.css'
     ], 'client');
 
     api.addFiles([

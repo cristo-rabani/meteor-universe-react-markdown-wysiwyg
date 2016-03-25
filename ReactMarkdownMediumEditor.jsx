@@ -4,6 +4,7 @@ import toMarkdown from 'to-markdown';
 import MediumEditor from 'medium-editor';
 import {Showdown} from 'meteor/markdown';
 import {_i18n as i18n} from 'meteor/universe:i18n';
+import './vendor/medium-editor-insert-plugin/medium-editor-insert-plugin.js';
 
 const T = i18n.createComponent('universe:react-markdown-wysiwyg');
 
@@ -15,7 +16,7 @@ export default React.createClass({
     getInitialState () {
         return {
             text: converter.makeHtml(this.props.markdown || '')
-        };
+        }
     },
 
     getDefaultProps () {
@@ -53,6 +54,11 @@ export default React.createClass({
             });
             this.blur(dom.innerHTML);
         });
+        if (this.props.insertPlugin) {
+            $(dom).mediumInsert({
+                editor: this.medium
+            });
+        }
     },
 
     componentWillUnmount () {
