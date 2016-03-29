@@ -8,17 +8,25 @@
  */
 import Handlebars from 'handlebars';
 import MediumEditor from 'medium-editor';
+import $ from 'jquery';
+console.log($);
 import 'jquery-sortable';
 // import 'blueimp-file-upload';
-import 'blueimp-file-upload/js/vendor/jquery.ui.widget.js';
-
-console.log("XXXXXXXXXXXXXXXX", $.widget);
-import 'blueimp-file-upload/js/jquery.iframe-transport.js';
-
+import widzet from 'blueimp-file-upload/js/vendor/jquery.ui.widget.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
-
-
-
+import 'blueimp-file-upload/js/jquery.fileupload-jquery-ui.js';
+console.log('widzet', widzet);
+console.log("AAC >>", $.widget);
+console.log("AAC >>", $.blueimp);
+console.log("AAC >>", $.fn);
+import 'blueimp-file-upload/js/jquery.iframe-transport.js';
+import 'blueimp-file-upload/js/jquery.fileupload-process.js';
+import 'blueimp-file-upload/js/jquery.fileupload-image.js';
+import 'blueimp-file-upload/js/jquery.fileupload-audio.js';
+import 'blueimp-file-upload/js/jquery.fileupload-video.js';
+import 'blueimp-file-upload/js/jquery.fileupload-validate.js';
+import 'blueimp-file-upload/js/jquery.fileupload-ui.js';
+import 'blueimp-file-upload/js/main.js';
 
 this["MediumInsert"] = this["MediumInsert"] || {};
 this["MediumInsert"]["Templates"] = this["MediumInsert"]["Templates"] || {};

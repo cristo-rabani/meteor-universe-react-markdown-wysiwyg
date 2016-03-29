@@ -20,8 +20,13 @@ Npm.depends({
     "medium-editor": "5.10.0",
     "rc-tabs": "5.5.0",
     "handlebars": "4.0.5",
+    "jquery": "1.11.2",
     "jquery-sortable": "0.9.13",
-    "blueimp-file-upload": "9.12.1"
+    "blueimp-file-upload": "9.12.1",
+    "blueimp-load-image": "2.6.1",
+    "blueimp-canvas-to-blob": "3.3.0", 
+    "tmpl": "1.0.4",
+    "load-image": "1.0.0"
 });
 
 Package.onUse(function (api) {

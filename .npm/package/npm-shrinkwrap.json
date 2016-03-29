@@ -1,9 +1,19 @@
 {
   "dependencies": {
+    "blueimp-canvas-to-blob": {
+      "version": "3.3.0",
+      "resolved": "https://registry.npmjs.org/blueimp-canvas-to-blob/-/blueimp-canvas-to-blob-3.3.0.tgz",
+      "from": "https://registry.npmjs.org/blueimp-canvas-to-blob/-/blueimp-canvas-to-blob-3.3.0.tgz"
+    },
     "blueimp-file-upload": {
       "version": "9.12.1",
       "resolved": "https://registry.npmjs.org/blueimp-file-upload/-/blueimp-file-upload-9.12.1.tgz",
-      "from": "blueimp-file-upload@9.12.1"
+      "from": "https://registry.npmjs.org/blueimp-file-upload/-/blueimp-file-upload-9.12.1.tgz"
+    },
+    "blueimp-load-image": {
+      "version": "2.6.1",
+      "resolved": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-2.6.1.tgz",
+      "from": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-2.6.1.tgz"
     },
     "collapse-whitespace": {
       "version": "1.1.2",
@@ -196,6 +206,11 @@
         }
       }
     },
+    "jquery": {
+      "version": "1.11.2",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-1.11.2.tgz",
+      "from": "jquery@1.11.2"
+    },
     "jquery-sortable": {
       "version": "0.9.13",
       "resolved": "https://registry.npmjs.org/jquery-sortable/-/jquery-sortable-0.9.13.tgz",
@@ -205,6 +220,42 @@
           "version": "2.2.2",
           "resolved": "https://registry.npmjs.org/jquery/-/jquery-2.2.2.tgz",
           "from": "https://registry.npmjs.org/jquery/-/jquery-2.2.2.tgz"
+        }
+      }
+    },
+    "load-image": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/load-image/-/load-image-1.0.0.tgz",
+      "from": "https://registry.npmjs.org/load-image/-/load-image-1.0.0.tgz",
+      "dependencies": {
+        "is-promise": {
+          "version": "1.0.1",
+          "resolved": "https://registry.npmjs.org/is-promise/-/is-promise-1.0.1.tgz",
+          "from": "https://registry.npmjs.org/is-promise/-/is-promise-1.0.1.tgz"
+        },
+        "lazify": {
+          "version": "1.0.0",
+          "resolved": "https://registry.npmjs.org/lazify/-/lazify-1.0.0.tgz",
+          "from": "https://registry.npmjs.org/lazify/-/lazify-1.0.0.tgz",
+          "dependencies": {
+            "lazy-promise": {
+              "version": "1.0.0",
+              "resolved": "https://registry.npmjs.org/lazy-promise/-/lazy-promise-1.0.0.tgz",
+              "from": "https://registry.npmjs.org/lazy-promise/-/lazy-promise-1.0.0.tgz",
+              "dependencies": {
+                "promise": {
+                  "version": "2.0.0",
+                  "resolved": "https://registry.npmjs.org/promise/-/promise-2.0.0.tgz",
+                  "from": "https://registry.npmjs.org/promise/-/promise-2.0.0.tgz"
+                }
+              }
+            }
+          }
+        },
+        "promise": {
+          "version": "3.0.1",
+          "resolved": "https://registry.npmjs.org/promise/-/promise-3.0.1.tgz",
+          "from": "https://registry.npmjs.org/promise/-/promise-3.0.1.tgz"
         }
       }
     },
@@ -231,6 +282,11 @@
           }
         }
       }
+    },
+    "tmpl": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/tmpl/-/tmpl-1.0.4.tgz",
+      "from": "https://registry.npmjs.org/tmpl/-/tmpl-1.0.4.tgz"
     },
     "to-markdown": {
       "version": "1.3.0",
