@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import MediumEditor from 'medium-editor';
 import {_i18n as i18n} from 'meteor/universe:i18n';
+import './vendor/medium-editor-insert-plugin/medium-editor-insert-plugin.js';
 
 const T = i18n.createComponent('universe:react-markdown-wysiwyg');
 
@@ -36,6 +37,11 @@ export default React.createClass({
             });
             this.change(dom.innerHTML);
         });
+        if (this.props.insertPlugin) {
+            $(dom).mediumInsert({
+                editor: this.medium
+            });
+        }
     },
 
     componentWillUnmount () {

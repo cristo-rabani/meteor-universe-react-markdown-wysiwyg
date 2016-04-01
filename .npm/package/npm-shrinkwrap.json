@@ -209,7 +209,7 @@
     "jquery": {
       "version": "1.11.2",
       "resolved": "https://registry.npmjs.org/jquery/-/jquery-1.11.2.tgz",
-      "from": "jquery@1.11.2"
+      "from": "https://registry.npmjs.org/jquery/-/jquery-1.11.2.tgz"
     },
     "jquery-sortable": {
       "version": "0.9.13",
