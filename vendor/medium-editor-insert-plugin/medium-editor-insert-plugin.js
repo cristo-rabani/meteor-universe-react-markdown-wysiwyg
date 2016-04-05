@@ -6,12 +6,16 @@
  * Copyright (c) 2014 Pavel Linkesch (http://linkesch.sk)
  * Released under the MIT license
  */
+
+
+
 import Handlebars from 'handlebars';
 import MediumEditor from 'medium-editor';
 import $ from 'jquery';
 console.log($);
 import 'jquery-sortable';
 import 'blueimp-file-upload';
+import '../../uploadcare-medium-editor-insert-plugin.js';
 // import widzet from 'blueimp-file-upload/js/vendor/jquery.ui.widget.js';
 // import 'blueimp-file-upload/js/jquery.fileupload.js';
 // import 'blueimp-file-upload/js/jquery.fileupload-jquery-ui.js';
@@ -31,6 +35,8 @@ import 'blueimp-file-upload';
 this["MediumInsert"] = this["MediumInsert"] || {};
 this["MediumInsert"]["Templates"] = this["MediumInsert"]["Templates"] || {};
 
+console.log(this.MediumInsert.Templates, 'CHECKING THIS <----------------------');
+
 this["MediumInsert"]["Templates"]["src/js/templates/core-buttons.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function";
 
@@ -47,6 +53,8 @@ this["MediumInsert"]["Templates"]["src/js/templates/core-buttons.hbs"] = Handleb
     + "    </ul>\n</div>\n";
 },"useData":true});
 
+
+
 this["MediumInsert"]["Templates"]["src/js/templates/core-caption.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper;
 
@@ -55,9 +63,13 @@ this["MediumInsert"]["Templates"]["src/js/templates/core-caption.hbs"] = Handleb
     + "\"></figcaption>";
 },"useData":true});
 
+
+
 this["MediumInsert"]["Templates"]["src/js/templates/core-empty-line.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<p><br></p>\n";
 },"useData":true});
+
+
 
 this["MediumInsert"]["Templates"]["src/js/templates/embeds-toolbar.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
@@ -91,6 +103,8 @@ this["MediumInsert"]["Templates"]["src/js/templates/embeds-toolbar.hbs"] = Handl
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.actions : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 
+
+
 this["MediumInsert"]["Templates"]["src/js/templates/embeds-wrapper.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper;
 
@@ -99,9 +113,13 @@ this["MediumInsert"]["Templates"]["src/js/templates/embeds-wrapper.hbs"] = Handl
     + "\n		</div>\n	</figure>\n	<div class=\"medium-insert-embeds-overlay\"></div>\n</div>";
 },"useData":true});
 
+
+
 this["MediumInsert"]["Templates"]["src/js/templates/images-fileupload.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<input type=\"file\" multiple>";
 },"useData":true});
+
+
 
 this["MediumInsert"]["Templates"]["src/js/templates/images-image.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     return "        <div class=\"medium-insert-images-progress\"></div>\n";
@@ -115,9 +133,13 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-image.hbs"] = Handleb
     + "</figure>";
 },"useData":true});
 
+
+
 this["MediumInsert"]["Templates"]["src/js/templates/images-progressbar.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<progress min=\"0\" max=\"100\" value=\"0\">0</progress>";
 },"useData":true});
+
+
 
 this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
@@ -157,6 +179,9 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
     + "    </ul>\n</div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.actions : depth0),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
+
+
+
 ;(function ($, window, document, undefined) {
 
     'use strict';
@@ -433,7 +458,6 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
                 delete that.options.addons[addon];
                 return;
             }
-
             that.$el[addonName](options);
             that.options.addons[addon] = that.$el.data('plugin_'+ addonName).options;
         });
@@ -1810,6 +1834,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
             }.bind(this);
             domImage.src = img;
         } else {
+            console.log(img);
             data.context = $(this.templates['src/js/templates/images-image.hbs']({
                 img: img,
                 progress: this.options.preview
@@ -1918,6 +1943,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
      */
 
     Images.prototype.removeImage = function (e) {
+        console.log('removeImage <<<---------');
         var $image, $parent, $empty;
 
         if (e.which === 8 || e.which === 46) {
