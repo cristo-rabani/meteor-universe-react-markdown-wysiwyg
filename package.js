@@ -50,7 +50,8 @@ Package.onUse(function (api) {
         'styles/medium-editor.css',
         'styles/medium-editor-theme-beagle.css',
         'styles/default.css',
-        'vendor/medium-editor-insert-plugin/medium-editor-insert-plugin.css'
+        'vendor/medium-editor-insert-plugin/medium-editor-insert-plugin.css',
+        'uploadcare-medium-editor-insert-plugin.css'
     ], 'client');
 
     api.addFiles([

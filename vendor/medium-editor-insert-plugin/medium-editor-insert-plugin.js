@@ -15,7 +15,9 @@ import $ from 'jquery';
 console.log($);
 import 'jquery-sortable';
 import 'blueimp-file-upload';
-import '../../uploadcare-medium-editor-insert-plugin.js';
+import '../../test_uploadcare.js';
+
+// import '../../uploadcare-medium-editor-insert-plugin.js';
 // import widzet from 'blueimp-file-upload/js/vendor/jquery.ui.widget.js';
 // import 'blueimp-file-upload/js/jquery.fileupload.js';
 // import 'blueimp-file-upload/js/jquery.fileupload-jquery-ui.js';
@@ -545,6 +547,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
      */
 
     Core.prototype.toggleButtons = function (e) {
+        console.log("TOGGLE BUTTONS !!!!!!!!!!!");
         var $el = $(e.target),
             selection = window.getSelection(),
             that = this,
@@ -572,9 +575,11 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
 
         if ($el.hasClass('medium-editor-placeholder') === false && $el.closest('.medium-insert-buttons').length === 0 && $current.closest('.medium-insert-buttons').length === 0) {
 
+            console.log('SORRY DUDE DELETING IT');
             this.$el.find('.medium-insert-active').removeClass('medium-insert-active');
 
             $.each(this.options.addons, function (addon) {
+                console.log('.medium-insert-'+ addon);
                 if ($el.closest('.medium-insert-'+ addon).length) {
                     $current = $el;
                 }
@@ -585,8 +590,10 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
                     return;
                 }
             });
-
-            if ($p.length && (($p.text().trim() === '' && !activeAddon) || activeAddon === 'images')) {
+            // console.log(this.options.addons);
+            // console.log($p.length, $p.text().trim(), activeAddon);
+            if ($p.length && (($p.text().trim() === '' && !activeAddon) || activeAddon === 'images' || activeAddon === 'uploadCarePlugin')) {
+                console.log('ooops , giving it back');
                 $p.addClass('medium-insert-active');
 
                 // If buttons are displayed on addon paragraph, wait 100ms for possible captions to display
@@ -1834,7 +1841,6 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
             }.bind(this);
             domImage.src = img;
         } else {
-            console.log(img);
             data.context = $(this.templates['src/js/templates/images-image.hbs']({
                 img: img,
                 progress: this.options.preview
@@ -2038,7 +2044,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
                 top: $image.offset().top + 2, // 2px - distance from a border
                 left: $image.offset().left + $image.width() - $toolbar2.width() - 4 // 4px - distance from a border
             })
-            .show();
+            .show();    
 
         $toolbar.find('button').each(function () {
             if ($p.hasClass('medium-insert-images-'+ $(this).data('action'))) {
@@ -2060,6 +2066,8 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
      */
 
     Images.prototype.toolbarAction = function (e) {
+
+      console.log('toolbar !!!!!!!!!!! should  not see this');
         if (this.$currentImage === null) return;
         var $button = $(e.target).is('button') ? $(e.target) : $(e.target).closest('button'),
             $li = $button.closest('li'),
@@ -2071,16 +2079,20 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
         $button.addClass('medium-editor-button-active');
         $li.siblings().find('.medium-editor-button-active').removeClass('medium-editor-button-active');
 
+        console.warn($(this).data('action'));
+
         $lis.find('button').each(function () {
             var className = 'medium-insert-images-'+ $(this).data('action');
 
             if ($(this).hasClass('medium-editor-button-active')) {
+                debugger;
                 $p.addClass(className);
 
                 if (that.options.styles[$(this).data('action')].added) {
                     that.options.styles[$(this).data('action')].added($p);
                 }
             } else {
+                debugger
                 $p.removeClass(className);
 
                 if (that.options.styles[$(this).data('action')].removed) {
