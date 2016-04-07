@@ -1,10 +1,9 @@
 import Handlebars from 'handlebars';
-
-
+import UCare from 'meteor/smalljoys:uploadcare';
+import _ from 'lodash';
 
 this["MediumInsert"] = this["MediumInsert"] || {};
 this["MediumInsert"]["Templates"] = this["MediumInsert"]["Templates"] || {};
-
 
 
 this["MediumInsert"]["Templates"]["src/js/templates/uploadCarePlugin-image.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
@@ -18,7 +17,6 @@ this["MediumInsert"]["Templates"]["src/js/templates/uploadCarePlugin-image.hbs"]
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.progress : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</figure>";
 },"useData":true});
-
 
 
 this["MediumInsert"]["Templates"]["src/js/templates/uploadCarePlugin-toolbar.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
@@ -61,10 +59,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/uploadCarePlugin-toolbar.hbs
 },"useData":true});
 
 
-
-window.uploadcareStoreFilesOnSubmit = window.uploadcareStoreFilesOnSubmit || [];
-
-
+let formsWithSubmitEvents = [];
 
 /** Default values */
 var pluginName = 'mediumInsert',
@@ -90,7 +85,7 @@ var pluginName = 'mediumInsert',
             },
             left: {
                 label: '<span class="fa fa-align-left"></span>',
-                // added: function ($el) {console.log('clicked left!!!!')}
+                // added: function ($el) {}
                 // removed: function ($el) {}
             },
             right: {
@@ -182,8 +177,6 @@ UploadCarePlugin.prototype.events = function () {
         .on('click', '.medium-insert-uploadCarePlugin-toolbar .medium-editor-action', $.proxy(this, 'toolbarAction'))
         .on('click', '.medium-insert-uploadCarePlugin-toolbar2 .medium-editor-action', $.proxy(this, 'toolbar2Action'));
 
-    console.log(this.$el);
-
     this.$el
         .on('click', '.medium-insert-uploadCarePlugin img', $.proxy(this, 'selectImage'));
 };
@@ -213,14 +206,10 @@ UploadCarePlugin.prototype.editorSerialize = function () {
 };
 
 UploadCarePlugin.prototype.add = function () {
-    uploadcare.openDialog(null, {
-        imagesOnly: true,
-        doNotStore: true
-    }).done((file) => {
+    uploadcare.openDialog(null, this.core.options.uploadCareConfig).done((file) => {
         file.done((fileInfo) => {
-            window.uploadcareStoreFilesOnSubmit.push(fileInfo);
             var $place = this.$el.find('.medium-insert-active');
-
+            this.appendFileToFormData($place.closest('form'), fileInfo);
             this.core.hideButtons();
             // File uploading succeeded
             if ($place.is('p')) {
@@ -235,10 +224,34 @@ UploadCarePlugin.prototype.add = function () {
         }).fail((error) => {
             console.error("UPLOADCARE UPLOAD ERROR: " + error);
         });
-    }).fail((error, fileInfo) => {
-        // User just has closed the dialog by pressing ESC or clicking on "×"
-        alert(error, fileInfo);
+    })
+
+    // User just has closed the dialog by pressing ESC or clicking on "×" - this code is not necessary
+    // .fail((error, fileInfo) => {
+    //     alert(error, fileInfo);
+    // });
+};
+
+UploadCarePlugin.prototype.appendFileToFormData = function ($form, fileInfo) {
+    if (!$form.data('uploadcareImagesToStore')) {
+        $form.data('uploadcareImagesToStore', []);
+    }
+    $form.data('uploadcareImagesToStore').push(fileInfo);
+    this.appendSubmitEventForForm($form);
+};
+
+UploadCarePlugin.prototype.appendSubmitEventForForm = function ($form) {
+    if (formsWithSubmitEvents.some(form => form.is($form))) {
+        return;
+    }
+
+    $form.bind('submit', function (event) {
+        event.preventDefault();
+        $(this).data('uploadcareImagesToStore').forEach(function (fileInfo) {
+            Ucare.store(fileInfo.uuid);
+        });
     });
+    formsWithSubmitEvents.push($form);
 };
 
 UploadCarePlugin.prototype.showImage = function (fileInfo, data) {
@@ -249,7 +262,6 @@ UploadCarePlugin.prototype.showImage = function (fileInfo, data) {
 
     // If preview is allowed and preview image already exists,
     // replace it with uploaded image
-    console.log(fileInfo);
     $(this.templates['src/js/templates/uploadCarePlugin-image.hbs']({
         img: fileInfo.cdnUrl,
         progress: this.options.preview
@@ -280,17 +292,14 @@ UploadCarePlugin.prototype.showImage = function (fileInfo, data) {
 }
 
 UploadCarePlugin.prototype.selectImage = function (e) {
-    console.log('selecting image');
     if(this.core.options.enabled) {
         var $image = $(e.target);
         this.$currentImage = $image;
 
         // Hide keyboard on mobile devices
         this.$el.blur();
-        // debugger;
         $image.addClass('medium-insert-image-active');
         $image.closest('.medium-insert-uploadCarePlugin').addClass('medium-insert-active');
-        // debugger;
         setTimeout(() => {
             this.addToolbar();
 
@@ -324,7 +333,6 @@ UploadCarePlugin.prototype.unselectImage = function (e) {
 };
 
 UploadCarePlugin.prototype.removeImage = function (e) {
-    console.log('removeImage <<<---------');
     var $image, $parent, $empty;
 
     if (e.which === 8 || e.which === 46) {
@@ -332,6 +340,8 @@ UploadCarePlugin.prototype.removeImage = function (e) {
 
         if ($image.length) {
             e.preventDefault();
+
+            this.uploadcareDeleteFromTempStore($image);
 
             $parent = $image.closest('.medium-insert-uploadCarePlugin');
             $image.closest('figure').remove();
@@ -355,6 +365,21 @@ UploadCarePlugin.prototype.removeImage = function (e) {
             this.core.triggerInput();
         }
     }
+};
+
+UploadCarePlugin.prototype.uploadcareDeleteFromTempStore = function ($image) {
+    let $form = $image.closest('form'),
+        indexOfDeletedImg = null,
+        imgUrl = $image.attr('src');
+
+    $form.data('uploadcareImagesToStore') && $form.data('uploadcareImagesToStore').forEach((fileInfo, idx) => {
+        if (imgUrl === fileInfo.cdnUrl) {
+            Ucare.delete(fileInfo.uuid);
+            indexOfDeletedImg = idx;
+        }
+    });
+
+    indexOfDeletedImg != null && $form.data('uploadcareImagesToStore').splice(indexOfDeletedImg, 1);
 };
 
 UploadCarePlugin.prototype.addToolbar = function () {
@@ -399,8 +424,6 @@ UploadCarePlugin.prototype.addToolbar = function () {
             active = true;
         }
     });
-
-    console.log(active);
 
     if (active === false) {
         $toolbar.find('button').first().addClass('medium-editor-button-active');

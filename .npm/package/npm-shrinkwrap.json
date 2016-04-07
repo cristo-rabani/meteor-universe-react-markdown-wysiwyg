@@ -259,6 +259,11 @@
         }
       }
     },
+    "lodash": {
+      "version": "4.4.0",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.4.0.tgz",
+      "from": "lodash@4.4.0"
+    },
     "medium-editor": {
       "version": "5.10.0",
       "resolved": "https://registry.npmjs.org/medium-editor/-/medium-editor-5.10.0.tgz",

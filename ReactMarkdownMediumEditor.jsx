@@ -54,16 +54,12 @@ export default React.createClass({
             });
             this.blur(dom.innerHTML);
         });
-        if (this.props.insertPlugin) {
-            $(dom).mediumInsert({
-                editor: this.medium,
-                enabled: true,
-                addons: { // (object) Addons configuration
-                    embeds: false,
-                    images: false,
-                    uploadCarePlugin: true
-                }
-            });
+
+        if (this.props.insertPluginConfig) {
+            if (!(this.props.insertPluginConfig.constructor === Object)) {
+                throw new Meteor.Error(500, 'insertPluginConfig needs to be object');
+            }
+            $(dom).mediumInsert(_.extend({editor: this.medium}, this.props.insertPluginConfig));
         }
     },
 
