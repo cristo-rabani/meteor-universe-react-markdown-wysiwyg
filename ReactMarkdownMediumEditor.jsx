@@ -28,6 +28,11 @@ export default React.createClass({
     componentDidMount () {
         var dom = ReactDOM.findDOMNode(this);
         this.medium = new MediumEditor(dom, UniUtils.deepExtend(options, this.props.options || {}));
+        
+        if (this.props.options && this.props.options.setContent) {
+            this.medium.setContent(this.props.options.setContent);    
+        }
+
         this.medium.subscribe('editableInput', () => {
             this._updated = true;
             // temporally bugfix of issue #145
@@ -40,6 +45,7 @@ export default React.createClass({
                 $this.parents(':first').html($this.html());
             });
             this.change(dom.innerHTML);
+            this.props.onChangeGetSerialized(this.medium.serialize()['element-0'].value);
         });
         this.medium.subscribe('blur', () => {
             this._updated = true;
@@ -104,7 +110,14 @@ var options = {
         /* These are the default options for the toolbar,
          if nothing is passed this is what is used */
         allowMultiParagraphSelection: true,
-        buttons: ['bold', 'italic', 'underline', 'anchor', 'h1', 'h2', 'h3', 'h4', 'orderedlist', 'unorderedlist', 'indent', 'outdent', 'quote', 'pre'],
+        buttons: [
+            'bold', 'italic', 'underline',
+            'anchor',
+            'h1', 'h2', 'h3', 'h4',
+            'orderedlist', 'unorderedlist',
+            'indent', 'outdent', 'quote', 'pre', 
+            'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'
+        ],
         diffLeft: 0,
         diffTop: -10,
         firstButtonClass: 'medium-editor-button-first',

@@ -26,8 +26,7 @@ Npm.depends({
     "blueimp-load-image": "2.6.1",
     "blueimp-canvas-to-blob": "3.3.0", 
     "tmpl": "1.0.4",
-    "load-image": "1.0.0",
-    "lodash": "4.4.0",
+    "load-image": "1.0.0"
 });
 
 Package.onUse(function (api) {

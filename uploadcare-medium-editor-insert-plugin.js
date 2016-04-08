@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import UCare from 'meteor/smalljoys:uploadcare';
-import _ from 'lodash';
+
 
 this["MediumInsert"] = this["MediumInsert"] || {};
 this["MediumInsert"]["Templates"] = this["MediumInsert"]["Templates"] || {};
@@ -65,7 +65,7 @@ let formsWithSubmitEvents = [];
 var pluginName = 'mediumInsert',
     addonName = 'UploadCarePlugin', // first char is uppercase
     defaults = {
-        label: '<span class="fa fa-cloud-upload"></span>',
+        label: '<i class="fa fa-cloud-upload"></i>',
         deleteMethod: 'POST',
         deleteScript: 'delete.php',
         preview: true,
