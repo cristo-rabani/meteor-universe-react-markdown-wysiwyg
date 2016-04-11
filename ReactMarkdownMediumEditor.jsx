@@ -33,9 +33,16 @@ export default React.createClass({
             this.medium.setContent(this.props.options.setContent);    
         }
 
+        if (this.props.insertPluginConfig) {
+            if (!(this.props.insertPluginConfig.constructor === Object)) {
+                throw new Meteor.Error(500, 'insertPluginConfig needs to be object');
+            }
+            $(dom).mediumInsert(_.extend({editor: this.medium}, this.props.insertPluginConfig));
+        }
+
         this.medium.subscribe('editableInput', () => {
             this._updated = true;
-            // temporally bugfix of issue #145
+            // temporary bugfix of issue #145
             $('p > ol, p > ul, p > p', dom).each(function () {
                 $(this).unwrap();
             });
@@ -45,6 +52,7 @@ export default React.createClass({
                 $this.parents(':first').html($this.html());
             });
             this.change(dom.innerHTML);
+            $(dom).data().plugin_mediumInsert.removeCaptions();
             this.props.onChangeGetSerialized(this.medium.serialize()['element-0'].value);
         });
         this.medium.subscribe('blur', () => {
@@ -61,12 +69,6 @@ export default React.createClass({
             this.blur(dom.innerHTML);
         });
 
-        if (this.props.insertPluginConfig) {
-            if (!(this.props.insertPluginConfig.constructor === Object)) {
-                throw new Meteor.Error(500, 'insertPluginConfig needs to be object');
-            }
-            $(dom).mediumInsert(_.extend({editor: this.medium}, this.props.insertPluginConfig));
-        }
     },
 
     componentWillUnmount () {
