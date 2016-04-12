@@ -24,6 +24,18 @@ export default React.createClass({
     componentDidMount () {
         var dom = ReactDOM.findDOMNode(this);
         this.medium = new MediumEditor(dom, UniUtils.deepExtend(options, this.props.options || {}));
+
+        if (this.props.options && this.props.options.setContent) {
+            this.medium.setContent(this.props.options.setContent);    
+        }
+
+        if (this.props.insertPluginConfig) {
+            if (!(this.props.insertPluginConfig.constructor === Object)) {
+                throw new Meteor.Error(500, 'insertPluginConfig needs to be object');
+            }
+            $(dom).mediumInsert(_.extend({editor: this.medium}, this.props.insertPluginConfig));
+        }
+
         this.medium.subscribe('editableInput', () => {
             this._updated = true;
             // temporally bugfix of issue #145
@@ -36,13 +48,10 @@ export default React.createClass({
                 $this.parents(':first').html($this.html());
             });
             this.change(dom.innerHTML);
+            $(dom).data().plugin_mediumInsert.removeCaptions();
+            this.props.onChangeGetSerialized(this.medium.serialize()['element-0'].value);
         });
-        if (this.props.insertPluginConfig) {
-            if (!(this.props.insertPluginConfig.constructor === Object)) {
-                throw new Meteor.Error(500, 'insertPluginConfig needs to be object');
-            }
-            $(dom).mediumInsert(_.extend({editor: this.medium}, this.props.insertPluginConfig));
-        }
+
     },
 
     componentWillUnmount () {
