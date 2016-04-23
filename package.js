@@ -20,7 +20,7 @@ Package.onUse(function (api) {
     api.use('markdown');
     api.use('jquery');
     api.use('universe:i18n@1.4.1');
-    api.use('cristo:auto-install-npm');
+    api.use('cristo:auto-install-npm@0.0.5');
     api.addFiles('check.deps.js', 'server');
     api.addFiles([
         'styles/tabs.css',
