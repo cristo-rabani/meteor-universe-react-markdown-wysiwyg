@@ -1,5 +1,5 @@
-export default {
-    getInitialState: function () {
+import React from 'react';
+export default {    getInitialState: function () {
         var defaults = {window: {height: 0, width: 0}, document: {height: 0, width: 0}};
         return !this.onResize ? defaults : null;
     },

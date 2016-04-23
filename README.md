@@ -2,11 +2,8 @@
 A few of react components, that providing visual editor of markdown.
 As an editor engine this package use [medium editor](https://github.com/yabwe/medium-editor).
 
-All is made as a es6 module and it's works with [universe:modules](https://atmospherejs.com/universe/modules)
 Translations of labels can be changed with [universe:i18n](https://atmospherejs.com/universe/i18n)
 
-## [DEMO](http://markdown-wysiwyg.meteor.com)
-check here: [DEMO](http://markdown-wysiwyg.meteor.com)
 
 ## Installation
 
@@ -26,7 +23,7 @@ Props:
 - options - options for medium editor
 
 ```
-import DoubleEditor from '{universe:react-markdown-wysiwyg}/DoubleMarkdownComponent';
+import DoubleEditor from 'meteor/universe:react-markdown-wysiwyg/DoubleMarkdownComponent';
 
 In your component: 
 ...
@@ -44,7 +41,7 @@ Props:
 - options - options for medium editor
 
 ```
-import ReactMarkdownMediumEditor from '{universe:react-markdown-wysiwyg}/ReactMarkdownMediumEditor';
+import ReactMarkdownMediumEditor from 'meteor/universe:react-markdown-wysiwyg/ReactMarkdownMediumEditor';
 
 In your component: 
 ...
@@ -62,7 +59,7 @@ Props:
 - options - options for medium editor
 
 ```
-import ReactHtmlMediumEditor from '{universe:react-markdown-wysiwyg}/ReactHtmlMediumEditor';
+import ReactHtmlMediumEditor from 'meteor/universe:react-markdown-wysiwyg/ReactHtmlMediumEditor';
 
 In your component: 
 ...
@@ -105,7 +102,7 @@ options = {
 - onResizeMixin
 
 ```
-import onResize from '{universe:react-markdown-wysiwyg}/mixins/on-resize';
+import onResize from 'meteor/universe:react-markdown-wysiwyg/mixins/on-resize';
 React.createClass({
   mixins: [onResize],
   render () {
@@ -134,20 +131,10 @@ React.createClass({
 
 ```
 
-- [rc-tabs@5.4.2](https://www.npmjs.com/package/rc-tabs)  
+- [rc-tabs@5.x](https://www.npmjs.com/package/rc-tabs)
 
-```
-import Tabs, {TabPane} from '{universe:react-markdown-wysiwyg}/editor/rc-tabs';
-```
 
-- [medium editor@5.9.0](https://www.npmjs.com/package/medium-editor)
+- [medium editor@5.x](https://www.npmjs.com/package/medium-editor)
 
-```
-import mediumEditor from '{universe:react-markdown-wysiwyg}/editor/medium-editor';
-```
 
-- [to-markdown@2.0.1](https://www.npmjs.com/package/to-markdown)
-
-```
-import toMarkdown from '{universe:react-markdown-wysiwyg}/editor/to-markdown';
-```
+- [to-markdown@1.x](https://www.npmjs.com/package/to-markdown)

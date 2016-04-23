@@ -1,7 +1,8 @@
-import MediumEditor from './editor/medium-editor';
-import toMarkdown from './editor/to-markdown';
-import {Showdown} from '{markdown}!exports';
-import i18n from '{universe:i18n}';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import toMarkdown from 'to-markdown';
+import {Showdown} from 'meteor/markdown';
+import i18n from 'meteor/universe:i18n';
 
 const T = i18n.createComponent('universe:react-markdown-wysiwyg');
 
@@ -24,7 +25,8 @@ export default React.createClass({
 
     componentDidMount () {
         var dom = ReactDOM.findDOMNode(this);
-        this.medium = new MediumEditor(dom, UniUtils.deepExtend(options, this.props.options || {}));
+        var MediumEditor = require('medium-editor');
+        this.medium = new MediumEditor (dom, UniUtils.deepExtend(options, this.props.options || {}));
         this.medium.subscribe('editableInput', () => {
             this._updated = true;
             // temporally bugfix of issue #145
